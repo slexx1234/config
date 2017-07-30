@@ -18,12 +18,14 @@ class Config implements \Countable, \IteratorAggregate
     protected $data = [];
 
     /**
-     * @param string [$file]
+     * @param string|array [$file]
      * @throws UndefinedDriverException|NoFileSpecifiedException
      */
     public function __construct($file = null)
     {
-        if ($file !== null) {
+        if (is_array($file)) {
+            $this->data = $file;
+        } else if (is_string($file)) {
             $this->file = $file;
             if (file_exists($file)) {
                 $this->data = $this->driver('parse', $file);

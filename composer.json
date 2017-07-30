@@ -1,0 +1,41 @@
+{
+  "name": "slexx/config",
+  "type": "library",
+  "description": "PHP config manager",
+  "keywords": [
+    "ini",
+    "json",
+    "yaml",
+    "config"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Aleksei Shchepkin",
+      "email": "slexx1234@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "slexx1234@gmail.com"
+  },
+  "require": {
+    "piwik/ini": "^1.0",
+    "symfony/yaml": "^3.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Slexx\\Config\\": "src/"
+    },
+    "exclude-from-classmap": [
+      "/tests/",
+      "/docs/"
+    ]
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}

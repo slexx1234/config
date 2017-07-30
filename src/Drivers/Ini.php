@@ -24,6 +24,6 @@ class Ini implements ConfigDriverInterface
      */
     public static function write($file, $data)
     {
-        (new IniWriter())->writeToFile($file, $data);
+        file_put_contents($file, str_replace("\r\n", "\n", (new IniWriter())->writeToString($data)));
     }
 }

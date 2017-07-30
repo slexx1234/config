@@ -26,16 +26,18 @@ class Config implements \Countable, \IteratorAggregate
         if ($file !== null) {
             $this->file = $file;
             if (file_exists($file)) {
-                $this->data = call_user_func([$this->driver(), 'parse'], $file);
+                $this->data = $this->driver('parse', $file);
             }
         }
     }
 
     /**
+     * @param string $method
+     * @param array $arguments
      * @return string
      * @throws UndefinedDriverException|NoFileSpecifiedException
      */
-    protected function driver()
+    protected function driver($method, ...$arguments)
     {
         if ($this->file === null) {
             throw new NoFileSpecifiedException();
@@ -48,7 +50,7 @@ class Config implements \Countable, \IteratorAggregate
             throw new UndefinedDriverException($suffix);
         }
 
-        return $driver;
+        return call_user_func_array([$driver, $method], $arguments);
     }
 
     /**
@@ -75,7 +77,7 @@ class Config implements \Countable, \IteratorAggregate
      */
     public function save()
     {
-        call_user_func([$this->driver(), 'write'], $this->file, $this->data);
+        $this->driver('write', $this->file, $this->data);
         return $this;
     }
 

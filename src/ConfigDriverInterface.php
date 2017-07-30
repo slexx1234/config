@@ -5,28 +5,16 @@ namespace Slexx\Config;
 interface ConfigDriverInterface
 {
     /**
-     * @param string $path
+     * @param string $file
      * @return array
      */
-    public function parseFile($path);
+    public function parse($file);
 
     /**
-     * @param string $string
+     * @param string $file
+     * @param array $data
      * @return array
      */
-    public function parseString($string);
-
-    /**
-     * @param string $path
-     * @param array $array
-     * @return array
-     */
-    public function writeToFile($path, $array);
-
-    /**
-     * @param array $array
-     * @return array
-     */
-    public function writeToString($array);
+    public function write($file, $data);
 }
 

@@ -25,33 +25,15 @@ abstract class ConfigDriver implements ConfigDriverInterface
     }
 
     /**
-     * @param string $path
+     * @param string $file
      * @return array
      */
-    public function parseFile($path)
-    {
-        return $this->parseString(file_get_contents($path));
-    }
+    abstract public function parse($file);
 
     /**
-     * @param string $string
+     * @param string $file
+     * @param array $data
      * @return array
      */
-    abstract public function parseString($string);
-
-    /**
-     * @param string $path
-     * @param array $array
-     * @return void
-     */
-    public function writeToFile($path, $array)
-    {
-        file_put_contents($path, $this->writeToString($array));
-    }
-
-    /**
-     * @param array $array
-     * @return array
-     */
-    abstract public function writeToString($array);
+    abstract public function write($file, $data);
 }

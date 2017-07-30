@@ -22,6 +22,6 @@ class Json implements ConfigDriverInterface
      */
     public static function write($file, $data)
     {
-        file_put_contents($file, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        file_put_contents($file, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n");
     }
 }

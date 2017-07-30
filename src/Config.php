@@ -112,5 +112,44 @@ class Config implements \Countable, \IteratorAggregate
     {
         return new \ArrayIterator($this->data);
     }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return $this
+     */
+    public function set($key, $value)
+    {
+        $this->data[$key] = $value;
+        return $this;
+    }
+
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public function has($key)
+    {
+        return isset($this->data[$key]);
+    }
+
+    /**
+     * @param string $key
+     * @return mixed|null
+     */
+    public function get($key)
+    {
+        return $this->has($key) ? $this->data[$key] : null;
+    }
+
+    /**
+     * @param string $key
+     * @return $this
+     */
+    public function remove($key)
+    {
+        unset($this->data[$key]);
+        return $this;
+    }
 }
 

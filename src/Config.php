@@ -5,7 +5,7 @@ namespace Slexx\Config;
 use Slexx\Config\Exceptions\NoFileSpecifiedException;
 use Slexx\Config\Exceptions\UndefinedDriverException;
 
-class Config
+class Config implements \Countable, \IteratorAggregate
 {
     /**
      * @var null|string
@@ -77,6 +77,38 @@ class Config
     {
         call_user_func([$this->driver(), 'write'], $this->file, $this->data);
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @return array
+     */
+    public function all()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @return int
+     */
+    public function count()
+    {
+        return count($this->data);
+    }
+
+    /**
+     * @return \ArrayIterator
+     */
+    public function getIterator()
+    {
+        return new \ArrayIterator($this->data);
     }
 }
 

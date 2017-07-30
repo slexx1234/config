@@ -2,6 +2,11 @@
 
 namespace Slexx\Config;
 
+use Slexx\Config\Drivers\Ini;
+use Slexx\Config\Drivers\Php;
+use Slexx\Config\Drivers\Json;
+use Slexx\Config\Drivers\Yaml;
+
 class DriversManager
 {
     /**
@@ -14,7 +19,7 @@ class DriversManager
      * @param string $class
      * @return void
      */
-    protected static function set($suffix, $class)
+    public static function set($suffix, $class)
     {
         static::$drivers[$suffix] = $class;
     }
@@ -23,7 +28,7 @@ class DriversManager
      * @param string $suffix
      * @return bool
      */
-    protected static function has($suffix)
+    public static function has($suffix)
     {
         return isset(static::$drivers[$suffix]);
     }
@@ -32,7 +37,7 @@ class DriversManager
      * @param string $suffix
      * @return void
      */
-    protected static function remove($suffix)
+    public static function remove($suffix)
     {
         unset(static::$drivers[$suffix]);
     }
@@ -41,8 +46,13 @@ class DriversManager
      * @param string $suffix
      * @return null|string
      */
-    protected static function get($suffix)
+    public static function get($suffix)
     {
         return static::has($suffix) ? static::$drivers[$suffix] : null;
     }
 }
+
+DriversManager::set('ini', Ini::class);
+DriversManager::set('php', Php::class);
+DriversManager::set('yaml', Yaml::class);
+DriversManager::set('json', Json::class);

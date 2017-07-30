@@ -13,7 +13,7 @@ interface ConfigDriverInterface
     /**
      * @param string $file
      * @param array $data
-     * @return array
+     * @return void
      */
     public static function write($file, $data);
 }

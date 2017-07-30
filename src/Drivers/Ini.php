@@ -2,8 +2,8 @@
 
 namespace Slexx\Config\Drivers;
 
-use Piwik\Ini\IniReader;
-use Piwik\Ini\IniWriter;
+use NoczCore\Ini\IniReader;
+use NoczCore\Ini\IniWriter;
 use Slexx\Config\ConfigDriverInterface;
 
 class Ini implements ConfigDriverInterface
@@ -14,7 +14,7 @@ class Ini implements ConfigDriverInterface
      */
     public static function parse($file)
     {
-        return (new IniReader())->readFile($file);
+        return (new IniReader())->readFile($file)->toArray();
     }
 
     /**

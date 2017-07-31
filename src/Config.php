@@ -18,8 +18,13 @@ class Config implements \Countable, \IteratorAggregate
     protected $data = [];
 
     /**
-     * @param string|array [$file]
+     * @param string|array [$file] - Имя файла имя массив данных
      * @throws UndefinedDriverException|NoFileSpecifiedException
+     * @example:
+     * new Config('config.json');
+     * new Config('config.ini');
+     * new Config();
+     * new Config(['foo' => 'bar']);
      */
     public function __construct($file = null)
     {
@@ -34,8 +39,9 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @param string $method
-     * @param array $arguments
+     * Вызов метода драйвера конфигурации
+     * @param string $method - Имя метода
+     * @param array $arguments - Аргументы метода
      * @return string
      * @throws UndefinedDriverException|NoFileSpecifiedException
      */
@@ -56,7 +62,8 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @param null|string $file
+     * Установка пути к файлу
+     * @param null|string $file - Путь к файлу
      * @return $this
      */
     public function setFile($file)
@@ -66,6 +73,7 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
+     * Получение пути к файлу
      * @return null|string
      */
     public function getFile()
@@ -74,8 +82,13 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
+     * Сохранение конфигурайии
      * @return $this
      * @throws UndefinedDriverException|NoFileSpecifiedException
+     * @example:
+     * $config = new Config('config.json')
+     * $config->set('foo', 'bar');
+     * $config->save();
      */
     public function save()
     {
@@ -84,6 +97,7 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
+     * Преобразование в массив
      * @return array
      */
     public function toArray()
@@ -92,6 +106,7 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
+     * @see Config::toArray()
      * @return array
      */
     public function all()
@@ -116,8 +131,9 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @param string $key
-     * @param mixed $value
+     * Установка переменной конфигурации
+     * @param string $key - Имя переменной
+     * @param mixed $value - Значение переменной
      * @return $this
      */
     public function set($key, $value)
@@ -127,7 +143,8 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @param string $key
+     * Проверка существования переменной конфигурации
+     * @param string $key - Имя переменной
      * @return bool
      */
     public function has($key)
@@ -136,8 +153,9 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @param string $key
-     * @return mixed|null
+     * Получение значение переменной конфигурации
+     * @param string $key - Имя переменной
+     * @return mixed|null - Значение переменной или null в случае её отсуцтвия
      */
     public function get($key)
     {
@@ -145,7 +163,8 @@ class Config implements \Countable, \IteratorAggregate
     }
 
     /**
-     * @param string $key
+     * Удаление переменной конфигурации
+     * @param string $key - Имя переменной
      * @return $this
      */
     public function remove($key)

@@ -51,7 +51,8 @@ class Config implements \Countable, \IteratorAggregate
             throw new NoFileSpecifiedException();
         }
 
-        $suffix = end(explode('.', $this->file));
+        $parts = explode('.', $this->file);
+        $suffix = end($parts);
         $driver = DriversManager::get($suffix);
 
         if ($driver === null) {
